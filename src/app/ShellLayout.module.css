@@ -1,0 +1,8 @@
+.appRoot { position: relative; min-height: 100vh; }
+.main {
+  position: relative;                 /* sin z-index: no crea contexto de apilamiento (Apagar cubre las barras) */
+  min-height: 100vh;
+  padding-top: var(--topbar-h);
+  padding-bottom: calc(var(--hintbar-h) + var(--space-5));
+  outline: none;
+}

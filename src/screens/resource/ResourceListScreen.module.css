@@ -1,0 +1,52 @@
+/* Listas y detalles genéricos (§7.2). */
+.page { display: grid; gap: var(--space-5); padding: var(--space-6) var(--safe-x) var(--space-7); }
+.header { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap; }
+.heading { display: grid; gap: var(--space-1); }
+.count { color: var(--text-2); font-weight: 600; }
+.tools { display: flex; align-items: flex-end; gap: var(--space-4); flex-wrap: wrap; }
+.search { flex: 1 1 320px; max-width: 560px; }
+.sort { display: grid; gap: var(--space-1); }
+.sortLabel { font-size: var(--fs-small); font-weight: 600; color: var(--text-2); }
+.sortGroup { display: inline-flex; border-radius: var(--radius-tile); overflow: hidden; border: 1px solid var(--border); }
+.sortButton { min-height: 44px; padding: 0 var(--space-4); background: var(--bg-elev-2); font-weight: 600; }
+.sortButton[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
+.goto { display: grid; gap: var(--space-1); }
+.gotoLabel { font-size: var(--fs-small); font-weight: 600; color: var(--text-2); }
+.gotoRow { display: flex; gap: var(--space-2); }
+.gotoInput {
+  width: 10ch;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-tile);
+  border: 1px solid var(--border);
+  background: var(--bg-elev-2);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.gotoButton { min-height: 44px; padding: 0 var(--space-4); border-radius: var(--radius-tile); background: var(--accent); color: var(--on-accent); font-weight: 600; }
+.status { color: var(--warning); font-weight: 600; }
+
+.row {
+  display: grid;
+  grid-template-columns: 7ch 48px minmax(0, 1fr) 24px;
+  gap: var(--space-3);
+  align-items: center;
+  height: 60px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-1);
+  text-decoration: none;
+  color: var(--text);
+}
+.row:hover { background: var(--bg-elev-2); text-decoration: none; }
+.row[data-nothumb] { grid-template-columns: 7ch minmax(0, 1fr) 24px; }
+.idChip {
+  justify-self: start;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--bg-elev-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+}
+.label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.chevron { color: var(--text-2); }

@@ -1,0 +1,127 @@
+/* Base global: reset, tipografía, foco (§11.6), scroll-padding (§11.3), skip-link y clases
+   globales de la decisión P-8 con sus reglas móviles (§10.6, §10.7). */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  font-family: var(--font);
+  font-size: 100%;
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Las barras fijas no tapan el foco */
+  scroll-padding-top: calc(var(--topbar-h) + 8px);
+  scroll-padding-bottom: calc(var(--hintbar-h) + 8px);
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: var(--fs-body);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+h1 { font-size: var(--fs-h1); font-weight: 300; line-height: 1.15; }
+h2 { font-size: var(--fs-h2); font-weight: 400; line-height: 1.2; }
+h3 { font-size: var(--fs-h3); font-weight: 600; }
+/* Especificidad 0 con :where(): el reset no pisa el padding/margin que fijan los CSS Modules (.list, .children…) */
+:where(ul[role='list'], ol[role='list']) { list-style: none; margin: 0; padding: 0; }
+img, svg, canvas { display: block; max-width: 100%; }
+img { height: auto; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+table { border-collapse: collapse; }
+pre, code { font-family: var(--font-mono); }
+
+/* Números tabulares (stats, gamerscore, reloj) */
+.tabular, [data-tabular] { font-variant-numeric: tabular-nums; }
+
+/* Caption de consola */
+.caption {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* Texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap; border: 0;
+}
+
+/* Enlace "Saltar al contenido": primer enfocable, visible solo con foco */
+.skip-link {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-boot);
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: var(--radius-panel);
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+.skip-link:focus, .skip-link:focus-visible { transform: none; }
+
+/* Foco: anillo de dos tonos que no depende de la heurística de :focus-visible (§11.6) */
+:focus { outline: none; }
+:focus-visible,
+[data-input='gamepad'] :focus,
+[data-input='keyboard'] :focus,
+[data-input='pointer'] :is(a, button, [data-nav]):focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+/* h1 de inicio de pantalla: subrayado de acento de 3 px, sin anillo grande */
+h1[data-focus-start] { outline: none; }
+h1[data-focus-start]:focus,
+h1[data-focus-start]:focus-visible,
+[data-input] h1[data-focus-start]:focus {
+  box-shadow: none;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+/* Filas con scroll horizontal: la barra se oculta pero el scroll funciona (rueda, toque y foco) */
+.no-scrollbar, [data-scroll-row] { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar, [data-scroll-row]::-webkit-scrollbar { display: none; }
+
+/* Objetivos táctiles ≥ 44 px */
+[data-input='touch'] :is(button, a, [data-nav], input, [role='option'], [role='tab']) {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ---------------------------------------------------------------- clases globales (P-8) */
+.topbar { display: flex; align-items: center; }
+.hintbar { display: flex; align-items: center; }
+/* NFR-RESP-1: ni el documento ni las barras fijas generan scroll horizontal (el overflow-x de body
+   se propaga al viewport; html se deja en visible para no convertir body en contenedor de scroll). */
+html, .topbar, .hintbar { max-width: 100%; }
+
+/* Barra superior en móvil (§10.6) */
+@media (max-width: 600px) {
+  :root { --topbar-h: 56px; --hintbar-h: 48px; }      /* scroll-padding de §11.3 se ajusta solo */
+  .topbar { gap: var(--space-2); overflow: hidden; }
+  .topbar .gamertag, .topbar .clock { display: none; }
+  .topbar .offline .label { display: none; }           /* "Sin conexión" queda como icono */
+  .topbar .guide .label { display: none; }             /* "☰ Guía" queda como "☰" */
+  .topbar :is(button, a) { min-width: 44px; min-height: 44px; }
+}
+
+/* Barra de pistas en móvil (§10.7): solo las tres pistas base */
+@media (max-width: 600px) {
+  .hintbar { justify-content: space-around; overflow: hidden; }
+  .hintbar .hint:not([data-core]) { display: none; }
+}

@@ -1,0 +1,6 @@
+.layout { display: flex; flex-direction: column; min-height: 100%; }
+.content { flex: 1; min-width: 0; padding-bottom: var(--space-6); }
+[data-motion='full'] .content[data-direction='forward'] { animation: pivot-from-right var(--dur-slow) var(--ease-emph) both; }
+[data-motion='full'] .content[data-direction='backward'] { animation: pivot-from-left var(--dur-slow) var(--ease-emph) both; }
+@keyframes pivot-from-right { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+@keyframes pivot-from-left { from { opacity: 0; transform: translateX(-32px); } to { opacity: 1; transform: none; } }

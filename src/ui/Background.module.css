@@ -1,0 +1,56 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-bg);
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+/* Solo el contenedor se mueve: el blur de dentro no cambia (una sola rasterización) */
+.drift {
+  position: absolute;
+  inset: -12%;
+  will-change: transform;
+}
+[data-motion='full'] .drift { animation: bg-drift 60s ease-in-out infinite alternate; }
+@keyframes bg-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(3%, -2%, 0) scale(1.04); }
+  100% { transform: translate3d(-2%, 3%, 0) scale(1.02); }
+}
+
+.blur { position: absolute; inset: 0; filter: blur(80px); }
+.glowA, .glowB { position: absolute; border-radius: 50%; }
+.glowA {
+  top: -10%;
+  left: -10%;
+  width: 70%;
+  height: 75%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 28%, var(--bg)), transparent);
+}
+.glowB {
+  right: -8%;
+  bottom: -12%;
+  width: 65%;
+  height: 70%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 14%, var(--bg)), transparent);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+.mark {
+  position: absolute;
+  right: -10vh;
+  bottom: -14vh;
+  width: min(78vh, 900px);
+  height: min(78vh, 900px);
+  color: var(--text);
+  opacity: .05;
+}

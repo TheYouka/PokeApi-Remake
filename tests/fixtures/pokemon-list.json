@@ -1,0 +1,119 @@
+{
+  "count": 28,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/1/"
+    },
+    {
+      "name": "ivysaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/2/"
+    },
+    {
+      "name": "venusaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/3/"
+    },
+    {
+      "name": "charmander",
+      "url": "https://pokeapi.co/api/v2/pokemon/4/"
+    },
+    {
+      "name": "charmeleon",
+      "url": "https://pokeapi.co/api/v2/pokemon/5/"
+    },
+    {
+      "name": "charizard",
+      "url": "https://pokeapi.co/api/v2/pokemon/6/"
+    },
+    {
+      "name": "squirtle",
+      "url": "https://pokeapi.co/api/v2/pokemon/7/"
+    },
+    {
+      "name": "wartortle",
+      "url": "https://pokeapi.co/api/v2/pokemon/8/"
+    },
+    {
+      "name": "blastoise",
+      "url": "https://pokeapi.co/api/v2/pokemon/9/"
+    },
+    {
+      "name": "pikachu",
+      "url": "https://pokeapi.co/api/v2/pokemon/25/"
+    },
+    {
+      "name": "raichu",
+      "url": "https://pokeapi.co/api/v2/pokemon/26/"
+    },
+    {
+      "name": "mr-mime",
+      "url": "https://pokeapi.co/api/v2/pokemon/122/"
+    },
+    {
+      "name": "eevee",
+      "url": "https://pokeapi.co/api/v2/pokemon/133/"
+    },
+    {
+      "name": "vaporeon",
+      "url": "https://pokeapi.co/api/v2/pokemon/134/"
+    },
+    {
+      "name": "jolteon",
+      "url": "https://pokeapi.co/api/v2/pokemon/135/"
+    },
+    {
+      "name": "flareon",
+      "url": "https://pokeapi.co/api/v2/pokemon/136/"
+    },
+    {
+      "name": "chikorita",
+      "url": "https://pokeapi.co/api/v2/pokemon/152/"
+    },
+    {
+      "name": "bayleef",
+      "url": "https://pokeapi.co/api/v2/pokemon/153/"
+    },
+    {
+      "name": "espeon",
+      "url": "https://pokeapi.co/api/v2/pokemon/196/"
+    },
+    {
+      "name": "umbreon",
+      "url": "https://pokeapi.co/api/v2/pokemon/197/"
+    },
+    {
+      "name": "leafeon",
+      "url": "https://pokeapi.co/api/v2/pokemon/470/"
+    },
+    {
+      "name": "glaceon",
+      "url": "https://pokeapi.co/api/v2/pokemon/471/"
+    },
+    {
+      "name": "sylveon",
+      "url": "https://pokeapi.co/api/v2/pokemon/700/"
+    },
+    {
+      "name": "mr-rime",
+      "url": "https://pokeapi.co/api/v2/pokemon/866/"
+    },
+    {
+      "name": "charizard-mega-x",
+      "url": "https://pokeapi.co/api/v2/pokemon/10034/"
+    },
+    {
+      "name": "charizard-mega-y",
+      "url": "https://pokeapi.co/api/v2/pokemon/10035/"
+    },
+    {
+      "name": "raichu-alola",
+      "url": "https://pokeapi.co/api/v2/pokemon/10100/"
+    },
+    {
+      "name": "mr-mime-galar",
+      "url": "https://pokeapi.co/api/v2/pokemon/10168/"
+    }
+  ]
+}

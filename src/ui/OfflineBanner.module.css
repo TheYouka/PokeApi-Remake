@@ -1,0 +1,21 @@
+.holder {
+  position: fixed;
+  top: calc(var(--topbar-h) + var(--space-2));
+  left: 50%;
+  z-index: var(--z-bars);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.banner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: #FFC83D;
+  color: #000000;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  box-shadow: var(--shadow-1);
+  animation: pbx-fade-in var(--dur-med) var(--ease-standard) both;
+}

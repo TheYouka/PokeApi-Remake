@@ -1,0 +1,38 @@
+{
+  "id": 1,
+  "name": "generation-i",
+  "pokemon_species": [
+    {
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
+    },
+    {
+      "name": "charmander",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/4/"
+    },
+    {
+      "name": "charizard",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/6/"
+    },
+    {
+      "name": "squirtle",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/7/"
+    },
+    {
+      "name": "pikachu",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/25/"
+    },
+    {
+      "name": "raichu",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/26/"
+    },
+    {
+      "name": "mr-mime",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/122/"
+    },
+    {
+      "name": "eevee",
+      "url": "https://pokeapi.co/api/v2/pokemon-species/133/"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+.section { display: block; max-width: 100%; }
+.heading {
+  padding: var(--space-4) var(--safe-x) 0;
+  font-size: var(--fs-h2);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: .01em;
+}
+
+/* LITERAL §10.3 */
+.tileRow {
+  display: grid; grid-auto-flow: column dense;
+  grid-template-rows: repeat(var(--rows), var(--u)); grid-auto-columns: var(--u); gap: var(--gap);
+  overflow-x: auto; scroll-snap-type: x proximity;
+  /* overflow-x: auto también recorta en vertical: el padding deja sitio al escalado (5 %) y al glow
+     del foco (≈ 34 px), y el margen negativo devuelve el espacio vertical a 16 px netos */
+  padding: 36px var(--safe-x); margin-block: -20px; scroll-padding-inline: var(--safe-x);
+}
+.tileRow { --rows: 2; max-width: 100%; justify-content: start; }
+.tileRow[data-rows='4'] { --rows: 4; }
+
+@media (max-width: 600px) {
+  :root { --u: calc((100vw - 2 * var(--safe-x) - 3 * var(--gap)) / 4.5); }   /* ≈ 74 px a 390 px */
+  .tileRow, .tileRow[data-rows] { --rows: 2; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; }
+}

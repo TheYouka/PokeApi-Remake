@@ -1,0 +1,12 @@
+/* minmax(0, 1fr): la columna no crece hasta el ancho de las filas; así cada TileRow hace su propio
+   scroll horizontal y el documento no desborda en móvil (NFR-RESP-1, RF-NAV-5). */
+.home { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); padding-top: var(--space-2); }
+.recentMedia {
+  display: grid;
+  place-items: center end;
+  width: 100%;
+  height: 100%;
+  padding-right: 8%;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 40%, #121212), #0d0d0d);
+}
+.recentMedia img { width: auto !important; height: 100% !important; object-fit: contain !important; }

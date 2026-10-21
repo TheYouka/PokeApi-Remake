@@ -1,0 +1,70 @@
+.page { display: grid; gap: var(--space-6); padding: var(--space-6) var(--safe-x) var(--space-7); }
+.header { display: grid; gap: var(--space-1); }
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4) var(--space-5);
+  padding: var(--space-5);
+  border-radius: var(--radius-panel);
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+}
+.field { display: grid; gap: var(--space-2); align-content: start; }
+.label { font-weight: 600; }
+.input {
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-tile);
+}
+.input[aria-invalid='true'] { border-color: var(--danger); }
+.error { color: var(--danger); font-weight: 600; font-size: var(--fs-small); }
+.note { color: var(--text-2); font-size: var(--fs-small); }
+.submitRow { grid-column: 1 / -1; display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-tile);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  font-size: var(--fs-body);
+}
+.submit:disabled { opacity: .5; cursor: not-allowed; }
+
+.list { display: grid; gap: var(--space-4); }
+.listHeader { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+.rows { display: grid; gap: var(--space-2); }
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-2);
+}
+.rowLink { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.badge {
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+}
+.danger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-3);
+  font-weight: 600;
+}
+.danger:hover { background: #B3261E; color: #FFFFFF; }

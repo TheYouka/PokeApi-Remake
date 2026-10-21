@@ -1,0 +1,108 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-bars);
+  height: var(--topbar-h);
+  gap: var(--space-3);
+  padding: 0 var(--safe-x);
+  border-bottom: 1px solid var(--border);
+  view-transition-name: topbar;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 4px 14px 4px 4px;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+.profile:hover { background: rgb(127 127 127 / .14); }
+.identity { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+.gamertag {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 22ch;
+}
+.score { font-size: var(--fs-small); font-weight: 600; color: var(--text-2); white-space: nowrap; }
+
+.spacer { flex: 1; }
+
+.offline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--warning) 22%, transparent);
+  color: var(--text);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+.label { white-space: nowrap; }
+
+.iconButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--text);
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+.iconButton:hover { background: rgb(127 127 127 / .16); }
+.iconButton[aria-pressed='true'] { color: var(--text-2); }
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--bg-elev-1);
+}
+[data-motion='full'] .badge { animation: badge-pop var(--dur-slow) var(--ease-emph) both; }
+@keyframes badge-pop { from { transform: scale(0); } 60% { transform: scale(1.2); } to { transform: none; } }
+
+.clock {
+  min-width: 4.5ch;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  text-align: right;
+  letter-spacing: .02em;
+}
+
+.guide {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  background: rgb(127 127 127 / .14);
+  font-weight: 600;
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+.guide:hover { background: var(--accent); color: var(--on-accent); }
+.guideGlyph { font-size: 1.15em; line-height: 1; }
+
+@media (max-width: 600px) {
+  .profile { padding-right: 8px; gap: var(--space-2); }
+  .guide { padding: 0; justify-content: center; }
+  .offline { padding: 0; justify-content: center; width: 44px; }
+}

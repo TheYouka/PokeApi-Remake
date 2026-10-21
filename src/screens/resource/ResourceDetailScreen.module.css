@@ -1,0 +1,33 @@
+/* Detalle genérico (§7.2). */
+.page { display: grid; gap: var(--space-6); padding: var(--space-6) var(--safe-x) var(--space-7); }
+.sections { display: grid; gap: var(--space-6); }
+/* Pantalla de TV (≥ 1600 px): dos columnas de secciones; "Datos sin procesar" (la última) ocupa el ancho */
+@media (min-width: 1600px) {
+  .sections { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .sections > :last-child { grid-column: 1 / -1; }
+}
+.raw summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--text-2); }
+.pre {
+  max-height: 60vh;
+  overflow: auto;
+  margin-top: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  white-space: pre;
+}
+.rawActions { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-3);
+  font-weight: 600;
+}
+.button:hover { background: var(--accent); color: var(--on-accent); }
+.status { color: var(--warning); font-weight: 600; }

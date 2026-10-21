@@ -1,0 +1,38 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-content);
+  overflow-y: auto;
+  padding: calc(var(--topbar-h) + var(--space-6)) var(--safe-x) calc(var(--hintbar-h) + var(--space-6));
+  background: #000000;
+  color: #33FF66;
+  font-family: var(--font-mono);
+  text-shadow: 0 0 6px rgb(51 255 102 / .45);
+}
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgb(255 255 255 / .03) 0, rgb(255 255 255 / .03) 1px, transparent 1px, transparent 3px);
+}
+.terminal { position: relative; max-width: 72ch; margin: 0 auto; display: grid; gap: var(--space-7); }
+.text { font-size: clamp(0.95rem, 1.1vw, 1.35rem); line-height: 1.6; }
+.line { white-space: pre-wrap; word-break: break-word; min-height: 1.6em; }
+.option {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  padding: 0 .4ch;
+  margin-left: -.4ch;
+  border-radius: 2px;
+  text-shadow: inherit;
+}
+.option:hover, .option:focus { background: #33FF66; color: #000000; text-shadow: none; }
+.option:is(:focus, :focus-visible) { box-shadow: 0 0 0 2px #000, 0 0 0 4px #33FF66; }
+.cursor { animation: retro-blink 1s steps(1, end) infinite; }
+@keyframes retro-blink { 50% { opacity: 0; } }
+[data-motion='reduced'] .cursor { animation: none; }
+
+.credits { display: grid; gap: var(--space-2); font-size: var(--fs-small); opacity: .9; border-top: 1px dashed rgb(51 255 102 / .4); padding-top: var(--space-4); }
+.link { color: inherit; text-decoration: underline; text-underline-offset: 3px; justify-self: start; word-break: break-all; }
+.link:is(:focus, :focus-visible) { box-shadow: 0 0 0 2px #000, 0 0 0 4px #33FF66; }

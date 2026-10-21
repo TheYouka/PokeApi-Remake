@@ -1,0 +1,39 @@
+/* Movimiento (§10.3, §10.11): View Transitions, skeleton con brillo y movimiento reducido.
+   Las animaciones solo tocan transform y opacity. */
+html { scroll-behavior: smooth; }
+html[data-motion='reduced'] { scroll-behavior: auto; }
+
+@keyframes pbx-vt-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-12px); } }
+@keyframes pbx-vt-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes pbx-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes pbx-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tile-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes pbx-shimmer { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+
+/* Transiciones de página (React Router viewTransition): 220 ms con --ease-standard */
+::view-transition-old(root) { animation: pbx-vt-out 220ms var(--ease-standard) both; }
+::view-transition-new(root) { animation: pbx-vt-in 220ms var(--ease-standard) both; }
+/* Las barras llevan nombre propio y no se animan */
+::view-transition-group(topbar), ::view-transition-old(topbar), ::view-transition-new(topbar),
+::view-transition-group(hintbar), ::view-transition-old(hintbar), ::view-transition-new(hintbar) { animation: none; }
+/* Movimiento reducido: solo fundido de 120 ms */
+html[data-motion='reduced']::view-transition-old(root) { animation: pbx-fade-out 120ms linear both; }
+html[data-motion='reduced']::view-transition-new(root) { animation: pbx-fade-in 120ms linear both; }
+
+/* Skeleton: bloques --skeleton con brillo de 1,4 s; estáticos con movimiento reducido */
+.skeleton {
+  background-color: var(--skeleton);
+  background-image: linear-gradient(90deg, transparent 0%, var(--skeleton) 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-tile);
+  animation: pbx-shimmer 1.4s linear infinite;
+}
+[data-motion='reduced'] .skeleton { animation: none; background-image: none; }
+
+/* Fundido genérico */
+.fade-in { animation: pbx-fade-in var(--dur-med) var(--ease-standard) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

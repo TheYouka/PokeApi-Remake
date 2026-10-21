@@ -1,0 +1,19 @@
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+  color: var(--text-2);
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-elev-2);
+  color: var(--text-2);
+}
+.message { font-size: var(--fs-h3); font-weight: 400; color: var(--text); }
+.actions { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; }

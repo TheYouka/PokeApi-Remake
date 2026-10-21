@@ -1,0 +1,60 @@
+/* Tokens de diseño (§10.1). Se aplican desde los atributos de <html>: data-theme, data-motion,
+   data-input y la variable inline --accent/--on-accent (las fija main.tsx antes del primer render). */
+:root {
+  /* Tipografía */
+  --font: 'Inter Variable', system-ui, -apple-system, Roboto, sans-serif; /* Inter va en el bundle */
+  --font-mono: ui-monospace, 'Cascadia Mono', Consolas, 'Liberation Mono', monospace;
+  --fs-hero: clamp(2.5rem, 4vw, 4.5rem);   /* peso 300, como los títulos ligeros de consola */
+  --fs-h1: clamp(2rem, 2.8vw, 3.25rem);    /* 300 */
+  --fs-h2: clamp(1.375rem, 1.6vw, 1.875rem);/* 400 */
+  --fs-h3: 1.25rem;                        /* 600 */
+  --fs-body: clamp(0.95rem, 0.9vw, 1.2rem);/* 400; ≈ 1.125rem a 1920 */
+  --fs-small: 0.875rem;  --fs-caption: 0.75rem; /* caption: mayúsculas, tracking .08em, 600 */
+  /* Espaciado */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+  /* Zona segura TV (5 % horizontal, 4,5 % vertical) */
+  --safe-x: clamp(16px, 5vw, 96px); --safe-y: clamp(12px, 4.5vh, 48px);
+  /* Rejilla de tiles */
+  --u: clamp(64px, 5.8vw, 112px);  --gap: clamp(6px, 0.6vw, 12px);
+  --tile-small: var(--u);                       /* 1×1 */
+  --tile-medium: calc(var(--u) * 2 + var(--gap));/* 2×2 */
+  --tile-wide-w: calc(var(--u) * 4 + var(--gap) * 3); /* 4×2 */
+  --tile-large: var(--tile-wide-w);             /* 4×4 */
+  /* Barras */
+  --topbar-h: 72px; --pivot-h: 64px; --hintbar-h: 56px;
+  /* Radios y elevación */
+  --radius-tile: 2px; --radius-panel: 4px; --radius-pill: 999px;
+  --shadow-1: 0 2px 8px rgb(0 0 0 / .40); --shadow-2: 0 12px 40px rgb(0 0 0 / .55);
+  /* Movimiento */
+  --dur-fast: 120ms; --dur-med: 220ms; --dur-slow: 400ms;
+  --ease-standard: cubic-bezier(.2, 0, 0, 1); --ease-decel: cubic-bezier(0, 0, 0, 1);
+  --ease-emph: cubic-bezier(.3, 0, 0, 1);
+  /* Foco (anillo de dos tonos: válido sobre cualquier fondo, contraste ≥ 3:1) */
+  --focus-scale: 1.05;
+  --focus-ring: 0 0 0 3px #fff, 0 0 0 5px #000, 0 0 28px 6px var(--accent-glow);
+  /* Capas */
+  --z-bg: 0; --z-content: 1; --z-bars: 10; --z-toast: 50; --z-guide: 60; --z-dialog: 70; --z-hintbar: 75; --z-boot: 100;
+  /* Acento (se sobreescribe en runtime) */
+  --accent: #107C10; --on-accent: #FFFFFF;
+  --accent-hover: color-mix(in srgb, var(--accent) 88%, #fff);
+  --accent-pressed: color-mix(in srgb, var(--accent) 85%, #000);
+  --accent-glow: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+[data-theme='dark'] {
+  --bg: #0E0E0E; --bg-elev-1: #1A1A1A; --bg-elev-2: #242424; --bg-elev-3: #2E2E2E;
+  /* Velo al 93 %: el texto del fondo no se distingue aunque el desenfoque no llegue a aplicarse (NFR-A11Y-3) */
+  --acrylic: color-mix(in srgb, #1A1A1A 93%, transparent);
+  --text: #FFFFFF; --text-2: #C8C8C8; --text-3: #9E9E9E;   /* ≥ 6.5:1 sobre elev-1 */
+  --border: rgb(255 255 255 / .12); --scrim: linear-gradient(to top, rgb(0 0 0 / .80), rgb(0 0 0 / 0) 60%);
+  --danger: #FF6B6B; --warning: #FFC83D; --success: #6CCB5F; --skeleton: rgb(255 255 255 / .07);
+}
+[data-theme='light'] {
+  --bg: #F3F3F3; --bg-elev-1: #FFFFFF; --bg-elev-2: #EBEBEB; --bg-elev-3: #E0E0E0;
+  --acrylic: color-mix(in srgb, #FFFFFF 94%, transparent);
+  --text: #111111; --text-2: #3D3D3D; --text-3: #5C5C5C;   /* ≥ 6:1 sobre #F3F3F3 */
+  --border: rgb(0 0 0 / .12); --scrim: linear-gradient(to top, rgb(0 0 0 / .75), rgb(0 0 0 / 0) 60%);
+  --danger: #B3261E; --warning: #8A5A00; --success: #1E6B1E; --skeleton: rgb(0 0 0 / .07);
+}
+[data-motion='reduced'] { --dur-med: 1ms; --dur-slow: 1ms; } /* solo fundidos cortos con --dur-fast; el escalado de foco
+                                                               no existe en este modo (§10.3), no se anula con --focus-scale: 1 */

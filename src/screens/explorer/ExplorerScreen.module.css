@@ -1,0 +1,17 @@
+/* Explorador de la API (§13.7). */
+.page { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); padding-bottom: var(--space-7); }   /* filas con scroll propio en móvil */
+.header { display: grid; gap: var(--space-1); padding: var(--space-6) var(--safe-x) 0; }
+.note {
+  grid-row: span 2;
+  grid-column: span 4;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 12px;
+  border-radius: var(--radius-tile);
+  border: 1px dashed var(--border);
+  background: var(--bg-elev-1);
+  color: var(--text-2);
+  font-size: var(--fs-small);
+}
+.noteText { font-family: var(--font-mono); overflow-wrap: anywhere; }

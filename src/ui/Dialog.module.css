@@ -1,0 +1,70 @@
+.panel {
+  width: min(560px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-2);
+  color: var(--text);
+  overflow: hidden;
+  animation: dialog-in var(--dur-med) var(--ease-emph) both;
+}
+.panel[data-size='wide'] { width: min(880px, 100%); }
+[data-motion='reduced'] .panel { animation: pbx-fade-in var(--dur-fast) linear both; }
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+}
+.title { flex: 1; font-size: var(--fs-h2); font-weight: 400; }
+.close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  color: var(--text-2);
+  transition: background-color var(--dur-fast) var(--ease-standard), color var(--dur-fast);
+}
+.close:hover { background: var(--bg-elev-3); color: var(--text); }
+
+.body { padding: 0 var(--space-5) var(--space-4); overflow: auto; }
+.message { padding: 0 var(--space-5) var(--space-5); color: var(--text-2); font-size: var(--fs-body); }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: color-mix(in srgb, var(--bg-elev-1) 60%, transparent);
+  border-top: 1px solid var(--border);
+}
+.button {
+  min-height: 44px;
+  min-width: 120px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-tile);
+  font-weight: 600;
+  transition: background-color var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-decel);
+}
+[data-motion='full'] .button:active { transform: scale(.97); }
+.secondary { background: var(--bg-elev-3); color: var(--text); }
+.secondary:hover { background: color-mix(in srgb, var(--bg-elev-3) 80%, var(--text)); }
+.primary { background: var(--accent); color: var(--on-accent); }
+.primary:hover { background: var(--accent-hover); }
+.danger { background: #B3261E; color: #FFFFFF; }
+.danger:hover { background: #C62828; }
+
+@media (max-width: 600px) {
+  .actions { flex-direction: column-reverse; }
+  .button { width: 100%; }
+}

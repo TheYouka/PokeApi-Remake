@@ -1,0 +1,44 @@
+.glyph {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.face {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4A4A4A, #141414 70%);
+  border: 2px solid var(--ring);
+  color: var(--ring);
+  box-shadow: 0 1px 2px rgb(0 0 0 / .5);
+}
+.face[data-face='a'] { --ring: #6CCB5F; }
+.face[data-face='b'] { --ring: #FF6B6B; }
+.face[data-face='x'] { --ring: #5AA9FF; }
+.face[data-face='y'] { --ring: #FFC83D; }
+.pill {
+  min-width: 30px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: #2E2E2E;
+  border: 1px solid rgb(255 255 255 / .35);
+  color: #FFFFFF;
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+.pair { display: inline-flex; gap: 3px; }
+.menu {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2E2E2E;
+  border: 1px solid rgb(255 255 255 / .35);
+  gap: 2px;
+  align-content: center;
+}
+.menu > span { display: block; width: 10px; height: 2px; border-radius: 1px; background: #FFFFFF; }

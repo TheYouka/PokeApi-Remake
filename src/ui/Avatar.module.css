@@ -1,0 +1,14 @@
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  overflow: hidden;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, rgb(255 255 255 / .25), transparent 60%),
+    var(--accent);
+  color: color-mix(in srgb, var(--on-accent) 85%, transparent);
+  box-shadow: 0 0 0 2px rgb(255 255 255 / .18), var(--shadow-1);
+}
+.avatar svg { transform: translateY(3px); }
+.sprite { width: 120%; height: 120%; max-width: none; }

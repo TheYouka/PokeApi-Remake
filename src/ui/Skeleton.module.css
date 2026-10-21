@@ -1,0 +1,2 @@
+.block { display: block; }
+.region { display: grid; gap: var(--space-3); }

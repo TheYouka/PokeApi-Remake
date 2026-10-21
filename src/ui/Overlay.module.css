@@ -1,0 +1,21 @@
+/* Capa de overlay: deja libre la franja de la barra de pistas (§8.1). */
+.layer {
+  position: fixed;
+  inset: 0 0 var(--hintbar-h) 0;
+  display: grid;
+  place-items: center;
+  padding: var(--safe-y) var(--safe-x);
+  outline: none;
+}
+.layer[data-layer='3'] { z-index: var(--z-guide); }
+.layer[data-layer='2'], .layer[data-layer='4'] { z-index: var(--z-dialog); }
+.layer[data-placement='start'] { place-items: stretch start; padding: 0; }
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / .5);
+  animation: pbx-fade-in var(--dur-med) var(--ease-standard) both;
+}
+.layer[data-layer='2'] > .scrim { background: rgb(0 0 0 / .35); }
+.layer > :not(.scrim) { position: relative; }

@@ -1,0 +1,38 @@
+.card {
+  display: grid;
+  grid-template-rows: 112px auto auto 1fr;
+  justify-items: center;
+  align-items: start;
+  gap: 2px;
+  width: 100%;
+  height: clamp(200px, 11.5vw, 220px);
+  padding: var(--space-2);
+  border-radius: var(--radius-tile);
+  background:
+    linear-gradient(160deg, rgb(255 255 255 / .06), rgb(255 255 255 / 0) 55%),
+    var(--bg-elev-2);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: transform var(--dur-fast) var(--ease-decel), background-color var(--dur-fast) var(--ease-standard);
+}
+.card:hover { background-color: var(--bg-elev-3); }
+[data-motion='full'] .card:focus { transform: scale(var(--focus-scale)); will-change: transform; position: relative; z-index: 1; }
+.card[data-created] { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+.media { display: grid; place-items: center; width: 112px; height: 112px; }
+.num { font-size: var(--fs-caption); color: var(--text-2); font-weight: 600; }
+.name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.types { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; align-self: end; }
+.createdBadge {
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+}

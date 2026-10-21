@@ -1,0 +1,118 @@
+/* Bloques de datos compartidos (§7.2). */
+.muted { color: var(--text-2); }
+.note { color: var(--text-2); font-size: var(--fs-small); font-style: italic; }
+.link { text-decoration: none; }
+.link:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+
+.langBadge {
+  display: inline-block;
+  margin-left: var(--space-2);
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-elev-3);
+  color: var(--text-2);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: .06em;
+  vertical-align: middle;
+}
+
+/* Sección */
+.section { display: grid; gap: var(--space-4); }
+.sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+.sectionTitle { font-size: var(--fs-h2); }
+.sectionActions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+/* Cabecera de detalle */
+.detailHeader { display: flex; gap: var(--space-6); align-items: center; flex-wrap: wrap; }
+.detailMedia { flex: none; }
+.detailText { display: grid; gap: var(--space-2); }
+.chip {
+  justify-self: start;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--bg-elev-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+}
+
+/* FactGrid */
+.facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: var(--space-3); }
+.fact {
+  display: grid;
+  gap: 4px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-2);
+}
+.factValue { font-weight: 600; overflow-wrap: anywhere; }
+
+/* DamageRelations */
+.relations { display: grid; gap: var(--space-3); }
+.relationRow { display: grid; grid-template-columns: 9em 1fr; gap: var(--space-3); align-items: center; }
+.relationLabel { font-weight: 600; color: var(--text-2); }
+.badges { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 600px) { .relationRow { grid-template-columns: 1fr; } }
+
+/* EffectText y FlavorTextPicker */
+.effect { max-width: 80ch; white-space: pre-line; }
+.flavor { display: grid; gap: var(--space-3); }
+.flavorText { max-width: 70ch; font-size: var(--fs-body); }
+
+/* Chips */
+.chipsWrap { display: grid; gap: var(--space-3); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.chipLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+.chipLink:hover { background: var(--bg-elev-3); text-decoration: none; }
+.moreButton {
+  justify-self: start;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-tile);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.dialogRow {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-tile);
+}
+.dialogRow:hover { background: var(--bg-elev-3); }
+
+/* PokemonRefGrid */
+.refGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.refCard {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 2px;
+  height: 156px;
+  padding: var(--space-2);
+  border-radius: var(--radius-tile);
+  background: var(--bg-elev-2);
+  text-align: center;
+}
+.refCard:hover { background: var(--bg-elev-3); }
+.refNum { font-size: var(--fs-caption); color: var(--text-2); }
+.refName { font-weight: 600; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* MiniTable */
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; font-size: var(--fs-small); }
+.tableCaption { text-align: left; padding-bottom: var(--space-2); font-weight: 600; color: var(--text-2); }
+.table th, .table td { padding: var(--space-2) var(--space-3); text-align: left; border-bottom: 1px solid var(--border); }
+.table thead th { font-size: var(--fs-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
+.table tbody th { font-weight: 600; }
+.numeric { text-align: right !important; font-variant-numeric: tabular-nums; }

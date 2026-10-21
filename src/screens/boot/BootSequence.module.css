@@ -1,0 +1,94 @@
+/* Línea de tiempo (3,6 s) de §10.5 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  display: grid;
+  place-items: center;
+  background: #000000;
+  color: #FFFFFF;
+  animation: boot-out 1000ms var(--ease-standard) 2600ms forwards;   /* 2,6–3,6 s: fundido */
+}
+@keyframes boot-out { from { opacity: 1; } to { opacity: 0; } }
+
+.stage { position: relative; display: grid; justify-items: center; gap: var(--space-5); }
+
+.mark { width: min(36vh, 280px); height: min(36vh, 280px); color: #FFFFFF; overflow: visible; }
+
+/* 0,4–1,6 s: el contorno se dibuja en blanco (borde, línea central y botón) */
+.mark [data-part='ring'], .mark [data-part='band'], .mark [data-part='button'], .mark [data-part='core'] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: boot-draw var(--draw, 1200ms) var(--ease-emph) var(--at, 400ms) forwards;
+}
+.mark [data-part='ring'] { --at: 400ms; --draw: 1200ms; }
+.mark [data-part='band'] { --at: 800ms; --draw: 700ms; }
+.mark [data-part='button'] { --at: 1000ms; --draw: 600ms; }
+.mark [data-part='core'] { --at: 1200ms; --draw: 400ms; }
+@keyframes boot-draw { to { stroke-dashoffset: 0; } }
+
+/* 1,6–2,6 s: la mitad superior se rellena de acento */
+.mark [data-part='fill-top'], .mark [data-part='fill-bottom'] { opacity: 0; animation: boot-fill 1000ms var(--ease-standard) 1600ms both; }
+.mark [data-part='fill-bottom'] { --to: .08; }
+@keyframes boot-fill { from { opacity: 0; } to { opacity: var(--to, 1); } }
+
+/* 1,2 s: estallido de brillo de acento (escala 0 → 1,4; opacidad ,8 → 0) */
+.burst {
+  position: absolute;
+  top: calc(min(36vh, 280px) / 2);          /* centro de la Pokébola */
+  left: 50%;
+  width: min(80vh, 640px);
+  height: min(80vh, 640px);
+  margin: calc(min(80vh, 640px) / -2) 0 0 calc(min(80vh, 640px) / -2);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--accent), color-mix(in srgb, var(--accent) 40%, transparent) 45%, transparent);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  animation: boot-burst 900ms var(--ease-decel) 1200ms forwards;
+}
+@keyframes boot-burst {
+  0% { transform: scale(0); opacity: .8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* 1,6–2,6 s: "PokéBox One" (Inter 300, letter-spacing .3em → .08em) */
+.word {
+  font-size: var(--fs-hero);
+  font-weight: 300;
+  letter-spacing: .3em;
+  opacity: 0;
+  animation: boot-word 1000ms var(--ease-emph) 1600ms forwards;
+}
+@keyframes boot-word { to { letter-spacing: .08em; opacity: 1; } }
+
+.skip {
+  position: absolute;
+  left: 50%;
+  bottom: var(--safe-y);
+  transform: translateX(-50%);
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  color: rgb(255 255 255 / .75);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  border: 1px solid rgb(255 255 255 / .2);
+  background: rgb(255 255 255 / .04);
+}
+.skip:hover { color: #FFFFFF; border-color: rgb(255 255 255 / .5); }
+
+/* Saltado: fundido de 200 ms */
+.overlay[data-skipping] { animation: boot-out 200ms linear forwards; }
+
+/* Movimiento reducido: marca completa estática 300 ms y fundido de 600 ms (900 ms en total) */
+.overlay[data-reduced] { animation: boot-out 600ms linear 300ms forwards; }
+.overlay[data-reduced] .mark [data-part],
+.overlay[data-reduced] .word,
+.overlay[data-reduced] .burst { animation: none; }
+.overlay[data-reduced] .mark [data-part='ring'], .overlay[data-reduced] .mark [data-part='band'],
+.overlay[data-reduced] .mark [data-part='button'], .overlay[data-reduced] .mark [data-part='core'] { stroke-dashoffset: 0; }
+.overlay[data-reduced] .mark [data-part='fill-top'] { opacity: 1; }
+.overlay[data-reduced] .mark [data-part='fill-bottom'] { opacity: .08; }
+.overlay[data-reduced] .word { opacity: 1; letter-spacing: .08em; }
+.overlay[data-reduced][data-skipping] { animation: boot-out 200ms linear forwards; }

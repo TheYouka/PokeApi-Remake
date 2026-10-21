@@ -1,0 +1,42 @@
+.bars { display: grid; gap: var(--space-2); }
+.row {
+  display: grid;
+  grid-template-columns: 7.5em 3.5em 1fr;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 28px;
+}
+.bars[data-labels='hidden'] .row { grid-template-columns: 3.5em 1fr; }
+.label { font-weight: 600; color: var(--text-2); }
+.value { font-weight: 700; text-align: right; white-space: nowrap; }
+.mod { margin-left: 2px; font-size: .8em; }
+.mod[data-mod='up'] { color: var(--success); }
+.mod[data-mod='down'] { color: var(--danger); }
+.track {
+  position: relative;
+  height: 12px;
+  border-radius: 6px;
+  background: rgb(127 127 127 / .2);
+  overflow: hidden;
+}
+.totalRow .track { background: none; }
+.totalRow .value, .totalRow .label { color: var(--text); }
+.fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-origin: left center;
+}
+.fill[data-animate] { transition: transform 600ms var(--ease-decel); }
+
+/* Espejo (Comparar): A crece hacia la izquierda, B hacia la derecha */
+.bars[data-variant='left'] .row { grid-template-columns: 1fr 3.5em; }
+.bars[data-variant='left'] .track { order: -1; }
+.bars[data-variant='left'] .fill { transform-origin: right center; }
+.bars[data-variant='left'] .value { text-align: left; }
+.bars[data-variant='right'] .row { grid-template-columns: 3.5em 1fr; }
+.bars[data-variant='right'] .value { text-align: right; }
+
+@media (max-width: 600px) {
+  .row { grid-template-columns: 6em 3em 1fr; gap: var(--space-2); }
+}

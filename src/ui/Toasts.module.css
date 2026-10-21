@@ -1,0 +1,79 @@
+/* Abajo en el centro, por encima de la barra de pistas */
+.region {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--hintbar-h) + var(--space-4));
+  z-index: var(--z-toast);
+  transform: translateX(-50%);
+  pointer-events: none;
+  display: grid;
+  justify-items: center;
+  width: min(420px, calc(100vw - 2 * var(--space-4)));
+}
+
+.toast {
+  --pill-w: min(420px, calc(100vw - 2 * var(--space-4)));
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 56px;
+  width: var(--pill-w);
+  padding: 0 var(--space-4) 0 0;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-2);
+  white-space: nowrap;
+}
+.toast[data-kind='achievement'] { background: var(--accent); color: var(--on-accent); }
+.toast[data-kind='info'] { background: var(--bg-elev-3); color: var(--text); border: 1px solid var(--border); }
+
+.badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+.toast[data-kind='achievement'] .badge { background: rgb(0 0 0 / .18); }
+
+/* Ancho fijo (el de la píldora abierta menos el círculo y los huecos): el texto no se recoloca mientras
+   la píldora se abre o se recoge; la propia píldora recorta lo que sobra con overflow: hidden. */
+.body {
+  display: grid;
+  flex: none;
+  width: calc(var(--pill-w) - 56px - var(--space-3) - var(--space-4));
+  min-width: 0;
+  line-height: 1.2;
+}
+.line1 { color: inherit; opacity: .9; }
+/* Hasta dos líneas (caption 12 px + 2 × 14 px caben en los 56 px); el nodo conserva el texto completo. */
+.line2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  white-space: normal;
+  font-size: var(--fs-small);
+}
+
+/* Entrada: círculo de 56 px → píldora de 420 px en 300 ms; recogida en 250 ms */
+[data-motion='full'] .toast[data-phase='in'] { animation: toast-open 300ms var(--ease-emph) both; }
+[data-motion='full'] .toast[data-phase='in'] .body { animation: toast-text 300ms var(--ease-standard) both; }
+[data-motion='full'] .toast[data-phase='out'] { animation: toast-close 250ms var(--ease-standard) both; }
+@keyframes toast-open {
+  0% { width: 56px; opacity: 0; transform: translateY(12px) scale(.8); }
+  35% { width: 56px; opacity: 1; transform: none; }
+  100% { width: var(--pill-w); }
+}
+@keyframes toast-text { 0%, 50% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes toast-close {
+  0% { width: var(--pill-w); opacity: 1; }
+  70% { width: 56px; opacity: 1; }
+  100% { width: 56px; opacity: 0; transform: translateY(8px); }
+}
+
+/* Movimiento reducido: solo fundido */
+[data-motion='reduced'] .toast[data-phase='in'] { animation: pbx-fade-in var(--dur-fast) linear both; }
+[data-motion='reduced'] .toast[data-phase='out'] { animation: pbx-fade-out var(--dur-fast) linear both; }
